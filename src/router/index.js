@@ -44,4 +44,5 @@ const routes = [{
 
 export default new Router({
   routes
+  // base: '/dist/' // 打包到服务器要用到的
 });

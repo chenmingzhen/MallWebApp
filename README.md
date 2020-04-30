@@ -2,7 +2,7 @@
 
 > 在线商城webapp
 
-##第二次commit
+## 第三次commit
 
 ``` bash
 初始化项目
@@ -25,11 +25,24 @@ Nav基础组件开发与完善
 8. watch观察父组件传递的值的变化
 9. $emit发送事件回去调用方 带方法
 10. 设置:key 更改key 重新渲染组件 见官网
+11. 客户端storage 存储加载数据
+12. 取消多次请求结果
+13. keep-alive标签不重复加载页面
+14. v-model双向绑定数据
+15. 自定义节流函数 输入框文字在一定时间内发出信息 不每次输入都发送
+16. 自定义控件不能使用@click 使用@click.native
+17. this.$router.push('/search'); push存在历史前后记录 replace不存在
+18. 往子组件传递参数 为字符串不需要: 变量需要 placeholder='xxx' :palceholder='variable'
+19. @click.stop阻止事件冒泡
+20. transition-group 对循环渲染的标签添加动画
+21. storage存储到本地
+22. 打包修改 config/index.js build下assetsPublicPath '/'改为'./'
 ```
 
-##代码块
 
-9
+## 代码块
+
+### 9.
 ```
 this.$emit('pull-down', this.pullDownEnd);
 @pull-down="pullToRefresh"
@@ -41,8 +54,18 @@ pullToRefresh(end) {
       }
 ```
 
+### 20.
+```
+<transition-group class="g-list" name="list" tag="ul">
+      <li class="g-list-item" v-for="item in historys" :key="item" @click="$_search_selectItem(item)">
+        <span class="g-list-text">{{item}}</span>
+        <i class="iconfont icon-delete" @click.stop="removeItem(item)"></i>
+      </li>
+    </transition-group>
+```
 
-##插件安装指令
+
+## 插件安装指令
 
 ```bash
 1.ES6兼容ES5以下
@@ -60,7 +83,7 @@ pullToRefresh(end) {
     cnpm install --save vue-lazyload
 ```
 
-##错误
+## 错误
 
 ```bash
 1.ERROR in Cannot find module 'node-sass'（已解决）
@@ -69,6 +92,11 @@ pullToRefresh(end) {
     sass-loader当前最高版本是8.x，需要退回到7.3.1
     npm uninstall sass-loader（卸载当前版本）
     npm install sass-loader@7.3.1 --save-dev  （安装7.x版本）
+3.记得异步数据获取重新更新swiper
+4.当我在util不使用apply时 到search-box下的
+    query: debounce(function () {
+            this.$emit('query', this.query);
+                                })
+    出现错误
+    TypeError: Cannot read property '$emit' of undefined
 ```
-
-

@@ -2,7 +2,9 @@
   <div id="app" class="g-container">
     <div class="g-view-container">
       <!--router-view嵌套-->
-      <router-view/>
+      <keep-alive>
+        <router-view/>
+      </keep-alive>
     </div>
     <div class="g-footer-container">
       <c-tabbar/>
